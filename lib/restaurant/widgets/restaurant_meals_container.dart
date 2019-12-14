@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:happydormapp/dimen/dimen.dart';
 import 'package:happydormapp/restaurant/providers/dormitory_providers.dart';
 import 'package:happydormapp/routes/routers.dart';
@@ -51,105 +52,129 @@ class _RestaurantMealsContainerState extends State<RestaurantMealsContainer>
               return Consumer<DormitoryProviders>(
                 builder: (context, meals, _) => Padding(
                   padding: EdgeInsets.only(top: height * 0.15),
-                  child: ListView.builder(
-                    itemBuilder: (context, index) => Container(
-                      width: width * 0.1,
-                      height: height * 0.3,
-                      child: Card(
-                        key: ObjectKey(meals.orders[index].meal),
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 30,
-                          vertical: 15,
-                        ),
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                              Dimens.homePageContainerRoundRadius),
-                        ),
-                        elevation: Dimens.mainCardElevation,
-                        child: Hero(
-                          tag: Routers.heroTag[index],
-                          child: Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(imgList[index]),
-                              ),
-                            ),
+                  child: AnimationLimiter(
+                    child: ListView.builder(
+                      itemBuilder: (context, index) =>
+                          AnimationConfiguration.staggeredList(
+                        duration: Duration(milliseconds: 375),
+                        position: index,
+                        child: SlideAnimation(
+                          verticalOffset: 50.0,
+                          child: FadeInAnimation(
                             child: Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomRight,
-                                  colors: [
-                                    Colors.black.withOpacity(.9),
-                                    Colors.black.withOpacity(.4),
-                                  ],
+                              width: width * 0.1,
+                              height: height * 0.3,
+                              child: Card(
+                                key: ObjectKey(meals.orders[index].meal),
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: 30,
+                                  vertical: 15,
                                 ),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(left: width * 0.03),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: <Widget>[
-                                    Text(
-                                      whenMeal[index],
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 30,
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      Dimens.homePageContainerRoundRadius),
+                                ),
+                                elevation: Dimens.mainCardElevation,
+                                child: Hero(
+                                  tag: Routers.heroTag[index],
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: AssetImage(imgList[index]),
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.only(left: width * 0.01),
-                                      child: RichText(
-                                        overflow: TextOverflow.ellipsis,
-                                        text: TextSpan(
-                                          text: '${meals.orders[index].meal}',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          begin: Alignment.bottomRight,
+                                          colors: [
+                                            Colors.black.withOpacity(.9),
+                                            Colors.black.withOpacity(.4),
+                                          ],
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.only(left: width * 0.03),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: <Widget>[
+                                            Text(
+                                              whenMeal[index],
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 30,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: height * 0.01,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: width * 0.01),
+                                              child: RichText(
+                                                overflow: TextOverflow.ellipsis,
+                                                text: TextSpan(
+                                                  text:
+                                                      '${meals.orders[index].meal}',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: height * 0.01,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: <Widget>[
+                                                Text(
+                                                  '자세히 보기',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                IconButton(
+                                                  icon:
+                                                      Icon(Icons.chevron_right),
+                                                  color: Colors.white,
+                                                  onPressed: () {
+                                                    Navigator.of(context)
+                                                        .pushNamed(
+                                                      Routers.detailMealsInfo,
+                                                      arguments: {
+                                                        'image': imgList[index],
+                                                        'heroTag': Routers
+                                                            .heroTag[index],
+                                                        'meals': meals
+                                                            .orders[index].meal,
+                                                        'whenMeal':
+                                                            whenMeal[index],
+                                                      },
+                                                    );
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: <Widget>[
-                                        Text(
-                                          '자세히 보기',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        IconButton(
-                                          icon: Icon(Icons.chevron_right),
-                                          color: Colors.white,
-                                          onPressed: () {
-                                            Navigator.of(context).pushNamed(
-                                              Routers.detailMealsInfo,
-                                              arguments: {
-                                                'image': imgList[index],
-                                                'heroTag':
-                                                    Routers.heroTag[index]
-                                              },
-                                            );
-                                          },
-                                        )
-                                      ],
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
+                      itemCount: meals.orders.length,
                     ),
-                    itemCount: meals.orders.length,
                   ),
                 ),
               );

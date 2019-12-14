@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:happydormapp/animation/custom_fade_animation.dart';
 import 'package:happydormapp/dimen/dimen.dart';
 import 'package:happydormapp/restaurant/widgets/restaurant_meals_container.dart';
 
@@ -27,28 +28,34 @@ class _RestaurantMainPageState extends State<RestaurantMainPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Align(
-                child: Container(
-                  width: 70,
-                  height: 70,
-                  child: Image.asset(
-                    'assets/img/meals.png',
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    '행복기숙사 식단',
-                    style: TextStyle(
+              CustomFadeAnimation(
+                delay: 2.5,
+                child: Align(
+                  child: Container(
+                    width: 70,
+                    height: 70,
+                    child: Image.asset(
+                      'assets/img/meals.png',
                       color: Colors.black,
-                      fontSize: 30,
                     ),
                   ),
                 ),
+              ),
+              CustomFadeAnimation(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Text(
+                      '행복기숙사 식단',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 30,
+                      ),
+                    ),
+                  ),
+                ),
+                delay: 2.7,
               ),
             ],
           ),
