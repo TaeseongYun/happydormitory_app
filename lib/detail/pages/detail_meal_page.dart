@@ -2,6 +2,86 @@ import 'package:flutter/material.dart';
 import 'package:happydormapp/animation/custom_fade_animation.dart';
 
 class DetailMealPage extends StatelessWidget {
+  Widget _whenEatTimeAtSemeters(String time) {
+    switch (time) {
+      case '아침':
+        return CustomFadeAnimation(
+          delay: 1.5,
+          child: Text(
+            '학기 중 - 07:30 ~ 09:30',
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+        break;
+      case '아침(빵)':
+        return CustomFadeAnimation(
+          delay: 1.5,
+          child: Text(
+            '학기 중 - 07:30 ~ 09:30',
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+        break;
+      case '점심':
+        return CustomFadeAnimation(
+          delay: 1.5,
+          child: Text(
+            '학기 중 - 11:30 ~ 14:00',
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+        break;
+      case '저녁':
+        return CustomFadeAnimation(
+          delay: 1.5,
+          child: Text(
+            '학기 중 - 16:50 ~ 19:00',
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+    }
+  }
+
+  Widget _whenEatTimeAtVacation(String time) {
+    switch (time) {
+      case '아침':
+        return CustomFadeAnimation(
+          delay: 1.5,
+          child: Text(
+            '방학, 주말 및 공휴일 - 08:00 ~ 09:30',
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+        break;
+      case '아침(빵)':
+        return CustomFadeAnimation(
+          delay: 1.5,
+          child: Text(
+            '방학, 주말 및 공휴일 - 08:00 ~ 09:30',
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+        break;
+      case '점심':
+        return CustomFadeAnimation(
+          delay: 1.5,
+          child: Text(
+            '방학, 주말 및 공휴일 - 11:30 ~ 14:00',
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+        break;
+      case '저녁':
+        return CustomFadeAnimation(
+          delay: 1.5,
+          child: Text(
+            '방학, 주말 및 공휴일 - 17:30 ~ 18:45',
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final hegith = MediaQuery.of(context).size.height;
@@ -40,28 +120,6 @@ class DetailMealPage extends StatelessWidget {
               ),
               child: Stack(
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: hegith * 0.07,
-                      horizontal: width * 0.06,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Container(
-                            child: Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.white,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
                   Positioned(
                     bottom: 0,
                     left: 0,
@@ -107,12 +165,42 @@ class DetailMealPage extends StatelessWidget {
                           ),
                           SizedBox(
                             height: hegith * 0.02,
+                          ),
+                          _whenEatTimeAtSemeters(image['whenMeal']),
+                          SizedBox(
+                            height: hegith * 0.02,
+                          ),
+                          _whenEatTimeAtVacation(image['whenMeal']),
+                          SizedBox(
+                            height: hegith * 0.02,
                           )
                         ],
                       ),
                     ),
-                    height: hegith * 0.6,
-                  )
+                    height: hegith * 0.95,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: hegith * 0.07,
+                      horizontal: width * 0.06,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

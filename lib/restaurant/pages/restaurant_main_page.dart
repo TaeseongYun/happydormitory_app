@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:happydormapp/animation/custom_fade_animation.dart';
+import 'package:happydormapp/animation/custom_slide_animation.dart';
 import 'package:happydormapp/dimen/dimen.dart';
 import 'package:happydormapp/restaurant/widgets/restaurant_meals_container.dart';
 
@@ -12,11 +12,13 @@ class RestaurantMainPage extends StatefulWidget {
 
 class _RestaurantMainPageState extends State<RestaurantMainPage> {
   var isLoading = false;
+  var isClicked = false;
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Stack(
-      // children: <Widget>[],
       children: <Widget>[
         Container(
           padding: Platform.isAndroid
@@ -28,7 +30,28 @@ class _RestaurantMainPageState extends State<RestaurantMainPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              CustomFadeAnimation(
+              Padding(
+                padding:
+                    EdgeInsets.only(right: width * 0.07, top: height * 0.02),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        builder: (context) => Container(
+                          child: Text('Hello'),
+                        ),
+                        context: context,
+                      );
+                    },
+                    child: Icon(
+                      Icons.menu,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+              CustomSlideAnimation(
                 delay: 2.5,
                 child: Align(
                   child: Container(
@@ -41,7 +64,7 @@ class _RestaurantMainPageState extends State<RestaurantMainPage> {
                   ),
                 ),
               ),
-              CustomFadeAnimation(
+              CustomSlideAnimation(
                 child: Align(
                   alignment: Alignment.center,
                   child: Padding(

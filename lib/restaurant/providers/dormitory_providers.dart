@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:happydormapp/api/happy_dorm_api.dart';
 import 'package:happydormapp/data/dormitory_response.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,7 +24,9 @@ class DormitoryProviders with ChangeNotifier {
 
       if (isLoading) {
         isLoading = false;
-        service = await http.get('http://localhost:8000/');
+        service = Platform.isAndroid
+            ? await http.get(HappyDormitoryAPI.androidLocalhost)
+            : await http.get('http://localhost:8000/');
       }
 
       if (service != null) {
