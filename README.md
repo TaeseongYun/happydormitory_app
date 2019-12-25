@@ -14,7 +14,7 @@ flutter packages pub run build_runner build
 part 'dormitory_response.g.dart';
 ```
 
-.g의 앞 부분은 데이터클래스 파일명을 따라간다. 즉 데이터 파일명이 test.dart 면 build_runner 해주기전 `test.dart` 파일 안에 `part 'test.g.dart';` 이렇게 해줘야 한다. -> 여러번 사용하다 보니 part test.g.dart 입력하주면 `flutter packages pub run build_runner build` 실행시 같은 디렉토리에 파일이 생성 되는것이다.
+.g의 앞 부분은 데이터클래스 파일명을 따라간다. 즉 데이터 파일명이 test.dart 면 build_runner 해주기전 `test.dart` 파일 안에 `part 'test.g.dart';` 이렇게 해줘야 한다. -> 여러번 사용하다 보니 part test.g.dart 입력하주면 `flutter packages pub run build_runner build` 실행시 같은 디렉토리에 `test.g.dart`파일이 생성 되는것이다.
 
 ## @JsonSerializable
 

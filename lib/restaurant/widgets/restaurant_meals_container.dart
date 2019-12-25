@@ -105,101 +105,96 @@ class _RestaurantMealsContainerState extends State<RestaurantMealsContainer>
                                     child: Padding(
                                       padding:
                                           EdgeInsets.only(left: width * 0.03),
-                                      child: SingleChildScrollView(
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                            top: height * 0.02,
-                                          ),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: <Widget>[
-                                              Text(
-                                                whenMeal[index],
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30,
-                                                ),
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                          left: width * 0.04,
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: <Widget>[
+                                            Text(
+                                              whenMeal[index],
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 30,
                                               ),
-                                              SizedBox(
-                                                height: height * 0.01,
+                                            ),
+                                            SizedBox(
+                                              height: height * 0.01,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                left: width * 0.01,
                                               ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: width * 0.01,
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: 20,
                                                 ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                    horizontal: 20,
-                                                  ),
-                                                  child: RichText(
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    text: TextSpan(
-                                                      text: meals.orders[index]
-                                                                      .meal ==
-                                                                  null ||
-                                                              meals
-                                                                      .orders[
-                                                                          index]
-                                                                      .meal ==
-                                                                  ''
-                                                          ? '금일 식당은 휴장 합니다.'
-                                                          : '${meals.orders[index].meal}',
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                      ),
+                                                child: RichText(
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  text: TextSpan(
+                                                    text: meals.orders[index]
+                                                                    .meal ==
+                                                                null ||
+                                                            meals.orders[index]
+                                                                    .meal ==
+                                                                ''
+                                                        ? '금일 식당은 휴장 합니다.'
+                                                        : '${meals.orders[index].meal}',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                              SizedBox(
-                                                height: height * 0.02,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  Navigator.of(context)
-                                                      .pushNamed(
-                                                    Routers.detailMealsInfo,
-                                                    arguments: {
-                                                      'image': imgList[index],
-                                                      'heroTag': Routers
-                                                          .heroTag[index],
-                                                      'meals': meals
-                                                          .orders[index].meal,
-                                                      'whenMeal':
-                                                          whenMeal[index],
-                                                    },
-                                                  );
-                                                },
-                                                child: Container(
-                                                  padding: EdgeInsets.only(
-                                                    right: width * 0.05,
-                                                    top: height * 0.05,
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: <Widget>[
-                                                      Text(
-                                                        '자세히 보기',
-                                                        style: TextStyle(
-                                                          fontSize: 15,
-                                                          color: Colors.white,
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons.chevron_right,
+                                            ),
+                                            SizedBox(
+                                              height: height * 0.05,
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.of(context).pushNamed(
+                                                  Routers.detailMealsInfo,
+                                                  arguments: {
+                                                    'image': imgList[index],
+                                                    'heroTag':
+                                                        Routers.heroTag[index],
+                                                    'meals': meals
+                                                        .orders[index].meal,
+                                                    'whenMeal': whenMeal[index],
+                                                  },
+                                                );
+                                              },
+                                              child: Container(
+                                                padding: EdgeInsets.only(
+                                                  right: width * 0.05,
+                                                  // top: height * 0.03,
+                                                  bottom: height * 0.03,
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  children: <Widget>[
+                                                    Text(
+                                                      '자세히 보기',
+                                                      style: TextStyle(
+                                                        fontSize: 15,
                                                         color: Colors.white,
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                    Icon(
+                                                      Icons.chevron_right,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),

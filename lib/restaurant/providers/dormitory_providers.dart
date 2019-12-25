@@ -24,9 +24,9 @@ class DormitoryProviders with ChangeNotifier {
 
       if (isLoading) {
         isLoading = false;
-        service = Platform.isAndroid
-            ? await http.get(HappyDormitoryAPI.androidLocalhost)
-            : await http.get('http://localhost:8000/');
+        service = await http.get(HappyDormitoryAPI.dormitoryAPI);
+
+        //  await http.get(HappyDormitoryAPI.dormitoryAPI)
       }
 
       if (service != null) {

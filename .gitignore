@@ -89,5 +89,5 @@ build/
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
 lib/api/happy_dorm_api.dart
-
+android/key.properties
 # End of https://www.gitignore.io/api/flutter
