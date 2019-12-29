@@ -12,10 +12,10 @@ class _RestaurantBottomSheetState extends State<RestaurantBottomSheet> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: EdgeInsets.all(10),
       height: height * 0.3,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(30),
         color: Theme.of(context).canvasColor,
         boxShadow: [
           BoxShadow(

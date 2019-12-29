@@ -1,4 +1,4 @@
-package com.example.happydormapp
+package com.devts.tstec.happydormapp
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
